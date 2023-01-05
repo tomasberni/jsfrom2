@@ -1,29 +1,179 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello Rigo with Vanilla.js</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
     <link rel="shortcut icon" href="./4geeks.ico" />
-  </head>
-  <body>
-    <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
-      </div>
-    </div>
-  </body>
+    <!-- Este es el link que nos permite importar y usar el paquete íconos de font-awesome -->
+    <script src="https://kit.fontawesome.com/56125acec2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Formulario de pagos con tarjeta -->
+
+    <form id="formulario">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div id="contenedorDeForm" class="col-8">
+                    <div class="card">
+                        <div class="card-header bg-info">
+                            <h1 class="text-light">Formulario de Pagos</h1>
+                        </div>
+                        <div class="card-body">
+                            <div id="alertMessage" class="alert alert-danger center-me" role="alert">
+                                Faltan completar algunos campos
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="">Tarjeta de crédito</label>
+                                    <div class="input-group mb-3">
+                                        <input id="tarjetaCredito" type="text" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label for="">CVC#</label>
+                                    <div class="input-group mb-3">
+                                        <input id="cvc" type="text" class="form-control" placeholder="XXX" aria-label="cvc" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label class="ps-3" for="">Cantidad</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text border-0 bg-white" id="basic-addon1">$</span>
+                                        <input id="amount" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="">Nombre</label>
+                                    <div class="input-group mb-3">
+                                        <input id="nombre" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" onkeydown="return /[a-z]/i.test(event.key)" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="">Apellido</label>
+                                    <div class="input-group mb-3">
+                                        <input id="apellido" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" onkeydown="return /[a-z]/i.test(event.key)" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="">Ciudad</label>
+                                    <div class="input-group mb-3">
+                                        <input id="ciudad" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" onkeydown="return /[a-z]/i.test(event.key)" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label for="">Departamento</label>
+                                    <div class="input-group mb-3">
+                                        <select class="form-select" id="departamento">
+                                            <option selected>Seleccionar</option>
+                                            <option value="Artigas">Artigas</option>
+                                            <option value="Canelones">Canelones</option>
+                                            <option value="Cerro Largo">Cerro Largo</option>
+                                            <option value="Colonia">Colonia</option>
+                                            <option value="Durazno">Durazno</option>
+                                            <option value="Flores">Flores</option>
+                                            <option value="Florida">Florida</option>
+                                            <option value="Lavalleja">Lavalleja</option>
+                                            <option value="Maldonado">Maldonado</option>
+                                            <option value="Montevideo">Montevideo</option>
+                                            <option value="Paysandú">Paysandú</option>
+                                            <option value="Río Negro">Río Negro</option>
+                                            <option value="Rivera">Rivera</option>
+                                            <option value="Rocha">Rocha</option>
+                                            <option value="Salto">Salto</option>
+                                            <option value="San José">San José</option>
+                                            <option value="Soriano">Soriano</option>
+                                            <option value="Tacuarembó">Tacuarembó</option>
+                                            <option value="Treinta y Tres">Treinta y Tres</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label for="">Código Postal</label>
+                                    <div class="input-group mb-1">
+                                        <input id="codigoPostal" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                                    </div>
+                                </div>
+                                <div class="row pb-5">
+                                    <div id="grupoInput" class="col-6">
+                                        <label for="">Aceptamos</label>
+                                        <div class="input-group p-1 mb-5 bg-dark text-white rounded altura-select center-me">
+                                            <!--IconoMastercad-->
+                                            <div class="form-check form-check-inline mx-1">
+                                                <input class="form-check-input" type="radio" name="tarjetachecked" id="mastercard" value="option1">
+                                                <label class="form-check-label" for="mastercard"> <i class="fa-brands fa-cc-mastercard" style="font-size: 22px"></i>
+                                                </label>
+                                            </div>
+                                            <!--IconoVisa-->
+                                            <div class="form-check form-check-inline mx-1">
+                                                <input class="form-check-input" type="radio" name="tarjetachecked" id="visa" value="option2">
+                                                <label class="form-check-label" for="visa"> <i class="fa-brands fa-cc-visa" style="font-size: 22px"></i>
+                                                </label>
+                                            </div>
+                                            <!--IconoDinners-->
+                                            <div class="form-check form-check-inline mx-1">
+                                                <input class="form-check-input" type="radio" name="tarjetachecked" id="dinners" value="option3">
+                                                <label class="form-check-label" for="dinners"> <i class="fa-brands fa-cc-diners-club" style="font-size: 22px"></i>
+                                                </label>
+                                            </div>
+
+                                            <!--IconoAmex-->
+                                            <div class="form-check form-check-inline mx-1">
+                                                <input class="form-check-input" type="radio" name="tarjetachecked" id="american" value="option4">
+                                                <label class="form-check-label" for="amex"> <i class="fa-brands fa-cc-amex" style="font-size: 22px"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="mover" class="col-6">
+                                        <label for="">Tu Mensaje</label>
+                                        <div class="input-group">
+                                            <textarea id="mensaje" class="form-control" aria-label="With textarea" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row footer-height ">
+                                        <div class="col-6 d-flex footer-height">
+                                            <div id="advertencia" class="alert alert-dark center-me verticalazo" role="alert">
+                                                Presione el botón "Reset" y a continuación complete los campos señalados en rojo.
+                                            </div>
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-end footer-height">
+                                            <button class="btn btn-primary mt-3 btn-max-height" type="submit" value="Submit">Submit</button>
+                                            <input class="btn btn-secondary mt-3 ms-1 btn-max-height" type="reset" value="Reset" onclick="myReset()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+    </form>
+
+    <!-- Modal que se activa ante error en los datos del formulario
+    <dialog id="modal">
+        <h2 class="text-danger">Complete el Formulario</h2>
+        <p class="text-primary">Por favor, cierre esta ventana, presione el botón "Reset" y a continuación complete los campos señalados en rojo en los formatos correspondientes, por ejemplo "Nombre" solo acepta letras y "Tarjeta de crédito" solo números. Gracias.</p>
+        <button id="btnCerrarModal" class="btn btn-success">Cerrar</button>
+    </dialog> -->
+
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- Script Propio -->
+    <script src="app.js"></script>
+</body>
+
 </html>
